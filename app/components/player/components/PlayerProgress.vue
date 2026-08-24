@@ -5,12 +5,12 @@ import { usePlayer } from "@/composables/usePlayer";
 
 const { currentTime, duration, seek } = usePlayer();
 
-const isSeeking = ref(false);
-const seekProgress = ref(0);
+const isDragging = ref(false);
+const dragProgress = ref(0);
 
 const progress = computed(() => {
-  if (isSeeking.value) {
-    return seekProgress.value;
+  if (isDragging.value) {
+    return dragProgress.value;
   }
 
   if (!duration.value) {
@@ -21,40 +21,35 @@ const progress = computed(() => {
 });
 
 const displayedTime = computed(() => {
-  if (!isSeeking.value || !duration.value) {
+  if (!isDragging.value || !duration.value) {
     return currentTime.value;
   }
 
-  return (seekProgress.value / 100) * duration.value;
+  return (dragProgress.value / 100) * duration.value;
 });
 
-function handleSeekStart() {
-  isSeeking.value = true;
-  seekProgress.value = progress.value;
-}
-
-function handleSeek(event: Event) {
+function handleInput(event: Event) {
   const target = event.target as HTMLInputElement;
 
-  seekProgress.value = Number(target.value);
+  isDragging.value = true;
+  dragProgress.value = Number(target.value);
 }
 
-function handleSeekEnd() {
-  if (!duration.value) {
-    isSeeking.value = false;
+function handleChange(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const value = Number(target.value);
 
-    return;
+  dragProgress.value = value;
+
+  if (duration.value) {
+    seek((value / 100) * duration.value);
   }
 
-  const nextTime = (seekProgress.value / 100) * duration.value;
-
-  seek(nextTime);
-
-  isSeeking.value = false;
+  isDragging.value = false;
 }
 
 function formatTime(seconds: number) {
-  if (!seconds) {
+  if (!Number.isFinite(seconds) || seconds <= 0) {
     return "0:00";
   }
 
@@ -74,9 +69,8 @@ function formatTime(seconds: number) {
       max="100"
       step="0.1"
       class="player-progress"
-      @pointerdown="handleSeekStart"
-      @input="handleSeek"
-      @change="handleSeekEnd"
+      @input="handleInput"
+      @change="handleChange"
     />
 
     <div
