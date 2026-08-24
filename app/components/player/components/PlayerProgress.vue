@@ -1,23 +1,57 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import { usePlayer } from "@/composables/usePlayer";
 
 const { currentTime, duration, seek } = usePlayer();
 
-const progress = computed({
-  get() {
-    if (!duration.value) {
-      return 0;
-    }
+const isSeeking = ref(false);
+const seekProgress = ref(0);
 
-    return (currentTime.value / duration.value) * 100;
-  },
+const progress = computed(() => {
+  if (isSeeking.value) {
+    return seekProgress.value;
+  }
 
-  set(value: number) {
-    seek((value / 100) * duration.value);
-  },
+  if (!duration.value) {
+    return 0;
+  }
+
+  return (currentTime.value / duration.value) * 100;
 });
+
+const displayedTime = computed(() => {
+  if (!isSeeking.value || !duration.value) {
+    return currentTime.value;
+  }
+
+  return (seekProgress.value / 100) * duration.value;
+});
+
+function handleSeekStart() {
+  isSeeking.value = true;
+  seekProgress.value = progress.value;
+}
+
+function handleSeek(event: Event) {
+  const target = event.target as HTMLInputElement;
+
+  seekProgress.value = Number(target.value);
+}
+
+function handleSeekEnd() {
+  if (!duration.value) {
+    isSeeking.value = false;
+
+    return;
+  }
+
+  const nextTime = (seekProgress.value / 100) * duration.value;
+
+  seek(nextTime);
+
+  isSeeking.value = false;
+}
 
 function formatTime(seconds: number) {
   if (!seconds) {
@@ -34,19 +68,22 @@ function formatTime(seconds: number) {
 <template>
   <div class="w-full">
     <input
-      v-model="progress"
+      :value="progress"
       type="range"
       min="0"
       max="100"
       step="0.1"
       class="player-progress"
+      @pointerdown="handleSeekStart"
+      @input="handleSeek"
+      @change="handleSeekEnd"
     />
 
     <div
       class="mt-2 flex items-center justify-between text-xs text-neutral-400"
     >
       <span>
-        {{ formatTime(currentTime) }}
+        {{ formatTime(displayedTime) }}
       </span>
 
       <span>
