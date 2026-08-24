@@ -1,0 +1,63 @@
+[
+    {
+      "id": "mr-gazda",
+      "name": "Mr Gazda",
+      "avatar": "/images/artists/mr-gazda/mr-gazda.webp",
+      "cover": "/images/artists/mr-gazda/mr-gazda-cover.webp",
+      "genres": [
+        "Pop Rock",
+        "Love Rock",
+        "Ukrainian Pop",
+        "Gothic Rock"
+      ],
+      "description": "AI-артист, який створює українську романтичну та атмосферну рок-музику.",
+      "releases": [
+        {
+          "id": "summer-memories",
+          "title": "Summer Memories",
+          "type": "album",
+          "cover": "/images/covers/mr-gazda/summer-memories.webp",
+          "releaseDate": "2027-05-10",
+          "genres": [
+            "Pop Rock",
+            "Gothic Rock"
+          ],
+          "description": "Перший альбом Mr Gazda.",
+          "tracks": [
+            {
+              "id": "kokhannia-mizh-namy",
+              "title": "Кохання між нами",
+              "audio": "/audio/mr-gazda/kokhannia-mizh-namy.mp3",
+              "cover": "/images/covers/mr-gazda/kokhannia-mizh-namy.webp",
+              "duration": 193,
+              "description": "Літня романтична пісня про море, свободу та двох людей, які настільки захоплені одне одним, що губляться у вирі кохання."
+            },
+            {
+              "id": "pisnia-heroia",
+              "title": "Пісня Героя",
+              "audio": "/audio/mr-gazda/pisnia-heroia.mp3",
+              "cover": "/images/covers/mr-gazda/pisnia-heroia.webp",
+              "duration": 159,
+              "description": "Мелодійна історія про невпевненого хлопця, який порівнює себе з голлівудськими кіногероями, губить слова поруч із дівчиною, але все одно вірить, що одного дня зможе завоювати її серце."
+            },
+            {
+              "id": "padinnia-uhoru",
+              "title": "Падіння угору",
+              "audio": "/audio/mr-gazda/padinnia-uhoru.mp3",
+              "cover": "/images/covers/mr-gazda/padinnia-uhoru.webp",
+              "duration": 185,
+              "description": "Ейфорична рок-пісня про нічне запаморочення перед безмежним небом, коли планети й зорі кружляють навколо, земля зникає з-під ніг, а падіння раптом стає польотом угору."
+            },
+            {
+              "id": "kryshtalevyi-lis-tvoikh-sliz",
+              "title": "Кришталевий ліс твоїх сліз",
+              "audio": "/audio/mr-gazda/kryshtalevyi-lis-tvoikh-sliz.mp3",
+              "cover": "/images/covers/mr-gazda/kryshtalevyi-lis-tvoikh-sliz.webp",
+              "duration": 248,
+              "description": "Темна готична історія про дівчину, чий біль поступово перетворює світ навколо неї на кришталевий ліс, народжений із її сліз, холоду та нездійсненних мрій."
+            }
+          ]
+        }
+      ]
+    }
+  ]
