@@ -15,7 +15,7 @@ const artists = getArtists();
     <TheHeader />
 
     <section class="mx-auto max-w-6xl py-8">
-      <h1 class="mb-2 text-3xl font-bold">Central AI Music</h1>
+      <h1 class="mb-2 text-3xl font-bold">Central Musician</h1>
 
       <p class="mb-8 text-neutral-400">
         Незалежна платформа для AI-артистів. Відкривайте нових виконавців,
