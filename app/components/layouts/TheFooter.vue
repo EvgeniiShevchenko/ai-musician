@@ -4,7 +4,9 @@ import { computed } from "vue";
 import { usePlayer } from "@/composables/usePlayer";
 
 const instagramUrl = "https://www.instagram.com/YOUR_PROFILE";
-const email = "contact@centralmusic.com";
+
+const artistFormUrl = "https://forms.gle/8ZS9fT4SJt1zproB8";
+const trackFormUrl = "https://forms.gle/49Ja2uL5Y47dnrCv6";
 
 const { currentTrack } = usePlayer();
 
@@ -32,11 +34,44 @@ const footerClass = computed(() =>
 
       <h2 class="mt-6 text-3xl font-bold text-white">Central Musician</h2>
 
-      <p class="mt-4 max-w-xl text-sm leading-7 text-neutral-400">
+      <p class="mt-4 max-w-2xl text-sm leading-7 text-neutral-400">
         Незалежна музична платформа для AI-артистів. Відкривайте нових
-        виконавців, публікуйте власні релізи та створюйте майбутнє музики разом
-        із Central Musician.
+        виконавців, публікуйте власні композиції та допомагайте створювати
+        майбутнє музики разом із Central Musician.
       </p>
+
+      <section
+        class="mt-12 w-full max-w-4xl rounded-3xl border border-white/10 bg-neutral-900/60 p-8 backdrop-blur"
+      >
+        <h3 class="text-2xl font-bold text-white">
+          Опублікуйте свою AI-музику
+        </h3>
+
+        <p class="mt-4 leading-7 text-neutral-400">
+          Спочатку зареєструйте профіль артиста. Після схвалення ви зможете
+          надсилати власні композиції для публікації на Central Musician.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+          <a
+            :href="artistFormUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 font-semibold text-black transition hover:scale-105 hover:bg-neutral-200"
+          >
+            🎤 Зареєструвати артиста
+          </a>
+
+          <a
+            :href="trackFormUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 font-semibold text-white transition hover:border-white hover:bg-white/5"
+          >
+            🎵 Подати композицію
+          </a>
+        </div>
+      </section>
 
       <a
         :href="instagramUrl"
@@ -51,32 +86,11 @@ const footerClass = computed(() =>
         />
       </a>
 
-      <section
-        class="mt-10 w-full max-w-3xl rounded-3xl border border-white/10 bg-neutral-900/60 p-8 backdrop-blur"
-      >
-        <h3 class="text-2xl font-bold text-white">
-          Хочеш опублікувати свою AI-музику?
-        </h3>
-
-        <p class="mt-4 leading-7 text-neutral-400">
-          Якщо ти створюєш AI-музику, сингли, EP або альбоми та хочеш поділитися
-          ними з аудиторією — зв'яжися з нами. У майбутньому Central Musician
-          стане відкритою платформою для незалежних AI-артистів.
-        </p>
-
-        <a
-          :href="`mailto:${email}?subject=Публікація музики на Central Musician`"
-          class="mt-8 inline-flex rounded-xl bg-white px-6 py-3 font-semibold text-black transition duration-300 hover:scale-105 hover:bg-neutral-200"
-        >
-          Зв'язатися з нами
-        </a>
-      </section>
-
       <a
         :href="instagramUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-8 text-lg font-semibold text-white transition hover:text-neutral-300"
+        class="mt-6 text-lg font-semibold text-white transition hover:text-neutral-300"
       >
         Instagram
       </a>
@@ -115,8 +129,8 @@ const footerClass = computed(() =>
         користувачами.
       </p>
 
-      <p class="mt-8 text-sm text-neutral-500">
-        © {{ new Date().getFullYear() }} Central Musician
+      <p class="mt-6 text-sm text-neutral-500">
+        © {{ new Date().getFullYear() }} Central Musician. All rights reserved.
       </p>
     </div>
   </footer>
