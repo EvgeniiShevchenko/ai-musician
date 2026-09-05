@@ -83,6 +83,38 @@ const footerClass = computed(() =>
 
       <div class="mt-12 h-px w-full max-w-5xl bg-white/10" />
 
+      <div
+        class="mt-8 flex flex-col items-center gap-4 text-sm text-neutral-400 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-8"
+      >
+        <NuxtLink
+          to="/rules"
+          class="transition hover:text-white"
+        >
+          Правила платформи
+        </NuxtLink>
+
+        <NuxtLink
+          to="/privacy"
+          class="transition hover:text-white"
+        >
+          Політика конфіденційності
+        </NuxtLink>
+
+        <NuxtLink
+          to="/copyright-policy"
+          class="transition hover:text-white"
+        >
+          Авторські права
+        </NuxtLink>
+      </div>
+
+      <p class="mt-8 max-w-2xl text-center text-xs leading-6 text-neutral-500">
+        Усі права на музичні твори належать їхнім відповідним авторам та
+        правовласникам. Central Musician є платформою для публікації музики та
+        не претендує на право власності щодо матеріалів, завантажених
+        користувачами.
+      </p>
+
       <p class="mt-8 text-sm text-neutral-500">
         © {{ new Date().getFullYear() }} Central Musician
       </p>
