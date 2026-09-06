@@ -154,10 +154,41 @@ async function playTrack(track: Track) {
   duration.value = 0;
   isSeeking = false;
 
+  player.pause();
+
   player.src = track.audio;
   player.load();
 
-  await player.play();
+  await new Promise<void>((resolve, reject) => {
+    const cleanup = () => {
+      player.removeEventListener("loadedmetadata", onLoadedMetadata);
+      player.removeEventListener("error", onError);
+    };
+
+    const onLoadedMetadata = () => {
+      cleanup();
+      resolve();
+    };
+
+    const onError = () => {
+      cleanup();
+      reject(new Error("Failed to load audio metadata"));
+    };
+
+    player.addEventListener("loadedmetadata", onLoadedMetadata, {
+      once: true,
+    });
+
+    player.addEventListener("error", onError, {
+      once: true,
+    });
+  });
+
+  try {
+    await player.play();
+  } catch (error) {
+    console.error("[PLAY_ERROR]", error);
+  }
 }
 
 async function playPlaylist(tracks: Track[], startIndex = 0) {
