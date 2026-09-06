@@ -25,6 +25,26 @@ function getAudio() {
 
   audio = new Audio();
 
+  audio.addEventListener("seeking", () => {
+    console.log("seeking");
+  });
+
+  audio.addEventListener("seeked", () => {
+    console.log("seeked");
+  });
+
+  audio.addEventListener("loadedmetadata", () => {
+    console.log("loadedmetadata");
+  });
+
+  audio.addEventListener("canplay", () => {
+    console.log("canplay");
+  });
+
+  audio.addEventListener("canplaythrough", () => {
+    console.log("canplaythrough");
+  });
+
   audio.preload = "metadata";
   audio.volume = volume.value;
 
@@ -119,6 +139,11 @@ function toggle() {
 async function playTrack(track: Track) {
   const player = getAudio();
 
+  console.log("[PLAY_TRACK]", {
+    track: track.title,
+    src: track.audio,
+  });
+
   if (!player) {
     return;
   }
@@ -210,6 +235,15 @@ function seek(time: number) {
   if (!player) {
     return;
   }
+
+  console.log("[SEEK]", {
+    currentTime: player.currentTime,
+    duration: player.duration,
+    readyState: player.readyState,
+    seekable: player.seekable.length
+      ? `${player.seekable.start(0)}-${player.seekable.end(0)}`
+      : "none",
+  });
 
   const audioDuration = Number.isFinite(player.duration)
     ? player.duration
