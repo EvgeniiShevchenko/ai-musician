@@ -35,7 +35,7 @@
             {
               "id": "pisnia-heroia",
               "title": "Пісня Героя",
-              "audio": "/audio/mr-gazda/pisnia-heroia.mp3",
+              "audio": "https://evgeniishevchenko.github.io/audio-test/pisnia-heroia.mp3",
               "cover": "/images/covers/mr-gazda/pisnia-heroia.webp",
               "duration": 159,
               "description": "Мелодійна історія про невпевненого хлопця, який порівнює себе з голлівудськими кіногероями, губить слова поруч із дівчиною, але все одно вірить, що одного дня зможе завоювати її серце."
