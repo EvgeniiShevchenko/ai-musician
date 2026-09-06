@@ -45,7 +45,7 @@ function getAudio() {
     console.log("canplaythrough");
   });
 
-  audio.preload = "metadata";
+  audio.preload = "auto";
   audio.volume = volume.value;
 
   audio.addEventListener("loadedmetadata", () => {
